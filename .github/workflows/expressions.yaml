@@ -72,11 +72,11 @@ jobs:
               run: exit 1
 
             - name: Conditional Step - Success
-              if: success()
+              if: ${{ success() }}
               run: All previous steps succeeded.
 
             - name: Conditional Step - Failure
-              if: failure()
+              if: ${{ failure() }}
               run: echo A previous step failed.
 
             - name: Print Always
