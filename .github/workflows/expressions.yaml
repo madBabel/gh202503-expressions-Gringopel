@@ -62,10 +62,30 @@ jobs:
               run: |
                 echo ${{ github.event.pull_request.title }}
                 echo ${{ toJson(github.event.pull_request.labels)}}
-    
+            
             - name: Bug Check
               if: ${{ !cancelled()}} && contains(github.event.pull_request.title, 'fix')
               run: echo This PR fixes a bug.
+
+            - name: Failing Step
+              if: inputs.fail
+              run: exit 1
+
+            - name: Conditional Step - Success
+              if: success()
+              run: All previous steps succeeded.
+
+            - name: Conditional Step - Failure
+              if: failure()
+              run: echo A previous step failed.
+
+            - name: Print Always
+              if: ${{ !cancelled()}}
+              run: echo This step runs unless the workflow is cancelled.
+
+            - name: On Cancel
+              if: ${{ cancelled()}}
+              run: echo Workflow cancelled.
 
             
 
