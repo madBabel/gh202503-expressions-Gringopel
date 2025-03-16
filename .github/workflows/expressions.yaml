@@ -61,7 +61,7 @@ jobs:
               if: github.event.pull_request
               run: |
                 echo ${{ github.event.pull_request.title }}
-                echo ${{ toJson(github.event.pull_request.labels)}}
+                echo ${{ toJson(github.event.pull_request.labels) }}
             
             - name: Bug Check
               if: ${{ !cancelled()}} && contains(github.event.pull_request.title, 'fix')
